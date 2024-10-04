@@ -47,12 +47,19 @@ public class DoubleLinkedListIterator<T>
 
 public class DoubleLinkedList<T>
 {
-    private DoubleLinkedListNode<T> Head { get; set; }
-    private DoubleLinkedListNode<T> Tail { get; set; }
+    private DoubleLinkedListNode<T> _head;
+    private DoubleLinkedListNode<T> _tail;
+    private bool _unique;
     public int Length { get; private set; }
+    public DoubleLinkedList(bool unique = false)
+    {
+        _head = null;
+        _tail = null;
+        _unique = unique;
+    }
     private DoubleLinkedListIterator<T> Begin()
     {
-        DoubleLinkedListIterator<T> iterator = new DoubleLinkedListIterator<T>(Head);
+        DoubleLinkedListIterator<T> iterator = new DoubleLinkedListIterator<T>(_head);
         return iterator;
     }
     public void PrintList()
@@ -78,24 +85,36 @@ public class DoubleLinkedList<T>
         return null;
     }
 
+    public bool IsExist(T data) => Find(data) != null;
     public bool AreEqual(T data1, T data2)
     {
         return EqualityComparer<T>.Default.Equals(data1, data2);
     }
 
+    public bool CanInsert(T data)
+    {
+        if (_unique && IsExist(data))
+        {
+            Console.WriteLine("Already exist");
+            return false;
+        }
+        return true;
+    }
     public void InsertLast(T data)
     {
+        if(!CanInsert(data)) return;
+        
         DoubleLinkedListNode<T> newNode = new DoubleLinkedListNode<T>(data);
-        if (Tail == null)
+        if (_tail == null)
         {
-            Head = newNode;
-            Tail = newNode;
+            _head = newNode;
+            _tail = newNode;
         }
         else
         {
-            newNode.Previous = Tail;
-            Tail.Next = newNode;
-            Tail = newNode;
+            newNode.Previous = _tail;
+            _tail.Next = newNode;
+            _tail = newNode;
         }
 
         Length++;
@@ -103,6 +122,8 @@ public class DoubleLinkedList<T>
 
     public void InsertAfter(T data, T newData)
     {
+        if(!CanInsert(newData)) return;
+        
         DoubleLinkedListNode<T> currentNode = Find(data);
         if (currentNode == null)
         {
@@ -116,7 +137,7 @@ public class DoubleLinkedList<T>
         currentNode.Next = newNode;
         if (newNode.Next == null)
         {
-            Tail = newNode;
+            _tail = newNode;
         }
         else
         {
@@ -127,6 +148,7 @@ public class DoubleLinkedList<T>
 
     public void InsertBefore(T data, T newData)
     {
+        if(!CanInsert(newData)) return;
         DoubleLinkedListNode<T> currentNode = Find(data);
         if (currentNode == null)
         {
@@ -136,9 +158,9 @@ public class DoubleLinkedList<T>
 
         DoubleLinkedListNode<T> newNode = new DoubleLinkedListNode<T>(newData);
         newNode.Next = currentNode;
-        if (currentNode == Head)
+        if (currentNode == _head)
         {
-            Head = newNode;
+            _head = newNode;
         }
         else
         {
@@ -156,19 +178,19 @@ public class DoubleLinkedList<T>
             return;
         }
 
-        if (Head == Tail)
+        if (_head == _tail)
         {
-            Head = null;
-            Tail = null;
+            _head = null;
+            _tail = null;
         }
         else if (node.Previous == null)
         {
-            Head = node.Next;
+            _head = node.Next;
             node.Next.Previous = null;
         }
         else if (node.Next == null)
         {
-            Tail = node.Previous;
+            _tail = node.Previous;
             node.Previous.Next = null;
         }
         else
@@ -190,19 +212,19 @@ public class DoubleLinkedList<T>
             return;
         }
 
-        if (Head == Tail)
+        if (_head == _tail)
         {
-            Head = null;
-            Tail = null;
+            _head = null;
+            _tail = null;
         }
         else if (node.Previous == null)
         {
-            Head = node.Next;
+            _head = node.Next;
             node.Next.Previous = null;
         }
         else if (node.Next == null)
         {
-            Tail = node.Previous;
+            _tail = node.Previous;
             node.Previous.Next = null;
         }
         else
@@ -213,17 +235,6 @@ public class DoubleLinkedList<T>
 
         node = null;
         Length--;
-    }
-
-    public DoubleLinkedListNode<T> FindParent(DoubleLinkedListNode<T> node)
-    {
-        for (DoubleLinkedListIterator<T> itr = Begin(); itr.Current() != null; itr.Next())
-        {
-            if (itr.Current().Next == node)
-                return itr.Current();
-        }
-
-        return null;
     }
     
     //TODO: Create CopyList Method

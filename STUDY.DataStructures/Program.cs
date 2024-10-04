@@ -35,14 +35,14 @@ using DataStructures.DoubleLinkedList;
 
 #region DoublyLinkedListTesting
 
-DoubleLinkedList<int> list = new DoubleLinkedList<int>();
+DoubleLinkedList<int> list = new DoubleLinkedList<int>(true);
 list.InsertLast(1);
 list.InsertLast(2);
 list.InsertLast(3);
 list.InsertAfter(2, 7);
 list.InsertAfter(1, 65);
 // list.InsertAfter(2, 90);
-list.InsertBefore(1, 99);
+list.InsertBefore(1, 65);
 list.DeleteNode(65);
 list.PrintList();
 Console.WriteLine(list.Length);
