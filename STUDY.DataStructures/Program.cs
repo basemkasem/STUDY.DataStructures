@@ -60,24 +60,24 @@ using DataStructures.DoubleLinkedList;
 
 #region StackTesting
 
-DataStructures.Stack<int> myStack = new DataStructures.Stack<int>();
-Console.WriteLine($"Is empty: {myStack.IsEmpty()}");
-myStack.Push(15);
-myStack.Push(35);
-myStack.Push(146);
-myStack.Push(23);
-myStack.Push(85);
-Console.WriteLine($"Is empty: {myStack.IsEmpty()}");
-// Console.WriteLine($"Length: {myStack.Size()}");
-// Console.WriteLine(myStack.Peek());
-//Console.WriteLine(myStack.Pop());
-myStack.Print();
-while (!myStack.IsEmpty())
-{
-    Console.WriteLine(myStack.Pop());
-    Console.WriteLine(myStack.Size());
-    myStack.Print();
-}
+// DataStructures.Stack<int> myStack = new DataStructures.Stack<int>();
+// Console.WriteLine($"Is empty: {myStack.IsEmpty()}");
+// myStack.Push(15);
+// myStack.Push(35);
+// myStack.Push(146);
+// myStack.Push(23);
+// myStack.Push(85);
+// Console.WriteLine($"Is empty: {myStack.IsEmpty()}");
+// // Console.WriteLine($"Length: {myStack.Size()}");
+// // Console.WriteLine(myStack.Peek());
+// //Console.WriteLine(myStack.Pop());
+// myStack.Print();
+// while (!myStack.IsEmpty())
+// {
+//     Console.WriteLine(myStack.Pop());
+//     Console.WriteLine(myStack.Size());
+//     myStack.Print();
+// }
 
 
 // StackArray<int> myStackArray = new StackArray<int>();
@@ -103,5 +103,46 @@ while (!myStack.IsEmpty())
 //     Console.WriteLine(myStackArray.Size());
 //     myStackArray.Print();
 // }
+
+#endregion
+
+#region QueueTesting
+
+// DataStructures.Queue<int> myQueue = new DataStructures.Queue<int>();
+// Console.WriteLine($"Is empty: {myQueue.IsEmpty()}");
+// myQueue.Enqueue(15);
+// myQueue.Enqueue(35);
+// myQueue.Enqueue(17);
+// myQueue.Print();
+// Console.WriteLine($"Is empty: {myQueue.IsEmpty()}");
+// while (!myQueue.IsEmpty())
+// {
+//     Console.WriteLine("Top Element: " + myQueue.Dequeue());
+//     Console.WriteLine("Queue Size: " + myQueue.Size());
+//     myQueue.Print();
+// }
+
+#endregion
+
+#region QueueArrayTesting
+
+QueueArray<int> queueArray = new QueueArray<int>();
+
+Console.WriteLine(queueArray.HasData());
+queueArray.Enqueue(1);
+queueArray.Enqueue(5);
+queueArray.Enqueue(7);
+queueArray.Enqueue(10);
+Console.WriteLine(queueArray.HasData());
+
+queueArray.Print();
+
+while (queueArray.HasData())
+{
+    Console.WriteLine($"Top data: {queueArray.Dequeue()}");
+    Console.WriteLine($"Size: {queueArray.Size}");
+    queueArray.Print();
+}
+
 
 #endregion
