@@ -47,19 +47,19 @@ public class DoubleLinkedListIterator<T>
 
 public class DoubleLinkedList<T>
 {
-    private DoubleLinkedListNode<T> _head;
-    private DoubleLinkedListNode<T> _tail;
+    internal DoubleLinkedListNode<T> Head { get; private set; }
+    internal DoubleLinkedListNode<T> Tail { get; private set;}
     private bool _unique;
     public int Length { get; private set; }
     public DoubleLinkedList(bool unique = false)
     {
-        _head = null;
-        _tail = null;
+        Head = null;
+        Tail = null;
         _unique = unique;
     }
     private DoubleLinkedListIterator<T> Begin()
     {
-        DoubleLinkedListIterator<T> iterator = new DoubleLinkedListIterator<T>(_head);
+        DoubleLinkedListIterator<T> iterator = new DoubleLinkedListIterator<T>(Head);
         return iterator;
     }
     public void PrintList()
@@ -90,7 +90,6 @@ public class DoubleLinkedList<T>
     {
         return EqualityComparer<T>.Default.Equals(data1, data2);
     }
-
     public bool CanInsert(T data)
     {
         if (_unique && IsExist(data))
@@ -100,26 +99,50 @@ public class DoubleLinkedList<T>
         }
         return true;
     }
+
+    public void DeleteHead()
+    {
+        if (Head == null) return;
+        Head = Head.Next;
+        Length--;
+    }
+    public void InsertFirst(T data)
+    {
+        if(!CanInsert(data)) return;
+        
+        DoubleLinkedListNode<T> newNode = new DoubleLinkedListNode<T>(data);
+        if (Head == null)
+        {
+            Head = newNode;
+            Tail = newNode;
+        }
+        else
+        {
+            newNode.Next = Head;
+            Head.Previous = newNode;
+            Head = newNode;
+        }
+        Length++;
+    }
     public void InsertLast(T data)
     {
         if(!CanInsert(data)) return;
         
         DoubleLinkedListNode<T> newNode = new DoubleLinkedListNode<T>(data);
-        if (_tail == null)
+        if (Tail == null)
         {
-            _head = newNode;
-            _tail = newNode;
+            Head = newNode;
+            Tail = newNode;
         }
         else
         {
-            newNode.Previous = _tail;
-            _tail.Next = newNode;
-            _tail = newNode;
+            newNode.Previous = Tail;
+            Tail.Next = newNode;
+            Tail = newNode;
         }
 
         Length++;
     }
-
     public void InsertAfter(T data, T newData)
     {
         if(!CanInsert(newData)) return;
@@ -137,7 +160,7 @@ public class DoubleLinkedList<T>
         currentNode.Next = newNode;
         if (newNode.Next == null)
         {
-            _tail = newNode;
+            Tail = newNode;
         }
         else
         {
@@ -145,7 +168,6 @@ public class DoubleLinkedList<T>
         }
         Length++;
     }
-
     public void InsertBefore(T data, T newData)
     {
         if(!CanInsert(newData)) return;
@@ -158,9 +180,9 @@ public class DoubleLinkedList<T>
 
         DoubleLinkedListNode<T> newNode = new DoubleLinkedListNode<T>(newData);
         newNode.Next = currentNode;
-        if (currentNode == _head)
+        if (currentNode == Head)
         {
-            _head = newNode;
+            Head = newNode;
         }
         else
         {
@@ -169,7 +191,6 @@ public class DoubleLinkedList<T>
         currentNode.Previous = newNode;
         Length++;
     }
-
     public void DeleteNode(DoubleLinkedListNode<T> node)
     {
         if (node == null)
@@ -178,19 +199,19 @@ public class DoubleLinkedList<T>
             return;
         }
 
-        if (_head == _tail)
+        if (Head == Tail)
         {
-            _head = null;
-            _tail = null;
+            Head = null;
+            Tail = null;
         }
         else if (node.Previous == null)
         {
-            _head = node.Next;
+            Head = node.Next;
             node.Next.Previous = null;
         }
         else if (node.Next == null)
         {
-            _tail = node.Previous;
+            Tail = node.Previous;
             node.Previous.Next = null;
         }
         else
@@ -202,7 +223,6 @@ public class DoubleLinkedList<T>
         node = null;
         Length--;
     }
-
     public void DeleteNode(T data)
     {
         DoubleLinkedListNode<T> node = Find(data);
@@ -212,19 +232,19 @@ public class DoubleLinkedList<T>
             return;
         }
 
-        if (_head == _tail)
+        if (Head == Tail)
         {
-            _head = null;
-            _tail = null;
+            Head = null;
+            Tail = null;
         }
         else if (node.Previous == null)
         {
-            _head = node.Next;
+            Head = node.Next;
             node.Next.Previous = null;
         }
         else if (node.Next == null)
         {
-            _tail = node.Previous;
+            Tail = node.Previous;
             node.Previous.Next = null;
         }
         else
