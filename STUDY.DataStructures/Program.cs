@@ -126,23 +126,58 @@ using DataStructures.DoubleLinkedList;
 
 #region QueueArrayTesting
 
-QueueArray<int> queueArray = new QueueArray<int>();
-
-Console.WriteLine(queueArray.HasData());
-queueArray.Enqueue(1);
-queueArray.Enqueue(5);
-queueArray.Enqueue(7);
-queueArray.Enqueue(10);
-Console.WriteLine(queueArray.HasData());
-
-queueArray.Print();
-
-while (queueArray.HasData())
-{
-    Console.WriteLine($"Top data: {queueArray.Dequeue()}");
-    Console.WriteLine($"Size: {queueArray.Size}");
-    queueArray.Print();
-}
+// QueueArray<int> queueArray = new QueueArray<int>();
+//
+// Console.WriteLine(queueArray.HasData());
+// queueArray.Enqueue(1);
+// queueArray.Enqueue(5);
+// queueArray.Enqueue(7);
+// queueArray.Enqueue(10);
+// Console.WriteLine(queueArray.HasData());
+//
+// queueArray.Print();
+//
+// while (queueArray.HasData())
+// {
+//     Console.WriteLine($"Top data: {queueArray.Dequeue()}");
+//     Console.WriteLine($"Size: {queueArray.Size}");
+//     queueArray.Print();
+// }
 
 
 #endregion
+
+#region DictionaryTesting
+
+DataStructures.Dictionary<string, string> dictionary = new DataStructures.Dictionary<string, string>();
+// dictionary.Print();
+//
+// dictionary.Set("Sinar", "sinar@gmail.com");
+// dictionary.Set("Elvis", "elvis@gmail.com");
+// dictionary.Print();
+//
+// dictionary.Set("Tane", "tane@gmail.com");
+// dictionary.Set("Gerti", "gerti@gmail.com");
+// dictionary.Set("Arist", "arist@gmail.com");
+//
+// dictionary.Set("rArist", "rarist@gmail.com");
+// dictionary.Set("tArist", "tarist@gmail.com");
+// dictionary.Set("yArist", "yarist@gmail.com");
+//
+// dictionary.Print();
+//
+// Console.WriteLine(dictionary.Get("Tane"));
+// Console.WriteLine(dictionary.Get("Elviaadsdfg"));
+// Console.WriteLine(dictionary.Get("Sinar"));
+// Console.WriteLine(dictionary.Get("Elviaaa"));
+//
+// dictionary.Remove("Sinar");
+// dictionary.Remove("Elvis");
+// dictionary.Remove("Tane");
+// dictionary.Remove("Gerti");
+// dictionary.Remove("Arist");
+// dictionary.Print();
+// dictionary.Set("Sinar", "sinar@gmail.com");
+// dictionary.Print();
+#endregion
+
