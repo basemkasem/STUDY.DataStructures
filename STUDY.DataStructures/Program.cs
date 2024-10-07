@@ -181,3 +181,13 @@ DataStructures.Dictionary<string, string> dictionary = new DataStructures.Dictio
 // dictionary.Print();
 #endregion
 
+#region HashTesting
+
+Hash.Hash32("Hello world");
+
+Hash.Hash64("Hello world");
+string x = "Hello world";
+Console.WriteLine(x.GetHashCode().ToString("x"));
+
+    
+#endregion
