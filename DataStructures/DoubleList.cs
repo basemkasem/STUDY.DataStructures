@@ -103,7 +103,12 @@ public class DoubleLinkedList<T>
     public void DeleteHead()
     {
         if (Head == null) return;
-        Head = Head.Next;
+        if (Head == Tail) Head = Tail = null;
+        else
+        {
+            Head = Head.Next;
+            Head.Previous = null;
+        }
         Length--;
     }
     public void InsertFirst(T data)
