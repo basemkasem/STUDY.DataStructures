@@ -109,13 +109,13 @@ using DataStructures.DoubleLinkedList;
 #region QueueTesting
 
 // DataStructures.Queue<int> myQueue = new DataStructures.Queue<int>();
-// Console.WriteLine($"Is empty: {myQueue.IsEmpty()}");
+// Console.WriteLine($"Has Data: {myQueue.HasData()}");
 // myQueue.Enqueue(15);
 // myQueue.Enqueue(35);
 // myQueue.Enqueue(17);
 // myQueue.Print();
-// Console.WriteLine($"Is empty: {myQueue.IsEmpty()}");
-// while (!myQueue.IsEmpty())
+// Console.WriteLine($"Has Data: {myQueue.HasData()}");
+// while (myQueue.HasData())
 // {
 //     Console.WriteLine("Top Element: " + myQueue.Dequeue());
 //     Console.WriteLine("Queue Size: " + myQueue.Size());
@@ -193,16 +193,40 @@ using DataStructures.DoubleLinkedList;
 #endregion
 
 #region HashTableTesting
-HashTable<string, string> table = new HashTable<string, string>();
-table.Print();
-table.Set("Sinar", "sinar@gmail.com");
-table.Set("Elvis", "elvis@gmail.com");
-table.Set("Tane", "tane@gmail.com");
-table.Print();
-// Console.WriteLine("[get] " + table.Get("Sinar"));
-// //Console.WriteLine("[get] " + table.Get("Tane"));
-table.Set("Gerti", "gerti@gmail.com");
-table.Set("Arist", "arist@gmail.com");
-table.Print();
-// Console.WriteLine("[get] " + table.Get("Sinar"));
+// HashTable<string, string> table = new HashTable<string, string>();
+// table.Print();
+// table.Set("Sinar", "sinar@gmail.com");
+// table.Set("Elvis", "elvis@gmail.com");
+// table.Set("Tane", "tane@gmail.com");
+// table.Print();
+// // Console.WriteLine("[get] " + table.Get("Sinar"));
+// // //Console.WriteLine("[get] " + table.Get("Tane"));
+// table.Set("Gerti", "gerti@gmail.com");
+// table.Set("Arist", "arist@gmail.com");
+// table.Print();
+// // Console.WriteLine("[get] " + table.Get("Sinar"));
+#endregion
+
+#region BinaryTreeTesting
+BinaryTree<char> tree = new BinaryTree<char>();
+tree.Insert('A');
+tree.Insert('B');
+tree.Insert('C');
+tree.Insert('D');
+tree.Insert('E');
+tree.Insert('F');
+tree.Insert('G');
+tree.Insert('H');
+tree.Insert('I');
+tree.Print();
+Console.WriteLine();
+
+Console.WriteLine($"Height = {tree.Height()}");
+Console.WriteLine();
+
+tree.PreOrderTraversal();
+
+tree.InOrderTraversal();
+
+tree.PostOrderTraversal();
 #endregion

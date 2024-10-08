@@ -4,6 +4,7 @@ namespace DataStructures;
 public class Queue<T>
 {
     private DoubleLinkedList<T> _queue;
+    
 
     public Queue()
     {
@@ -17,7 +18,7 @@ public class Queue<T>
 
     public T Dequeue()
     {
-        if (IsEmpty()) return default;
+        if (!HasData()) return default;
         T result = _queue.Head.Data;
         _queue.DeleteHead();
         return result;
@@ -28,9 +29,9 @@ public class Queue<T>
         return _queue.Head.Data;
     }
 
-    public bool IsEmpty()
+    public bool HasData()
     {
-        return Size() <= 0;
+        return Size() > 0;
     }
 
     public int Size()
