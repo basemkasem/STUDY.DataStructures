@@ -149,7 +149,7 @@ using DataStructures.DoubleLinkedList;
 
 #region DictionaryTesting
 
-DataStructures.Dictionary<string, string> dictionary = new DataStructures.Dictionary<string, string>();
+// DataStructures.Dictionary<string, string> dictionary = new DataStructures.Dictionary<string, string>();
 // dictionary.Print();
 //
 // dictionary.Set("Sinar", "sinar@gmail.com");
@@ -183,11 +183,26 @@ DataStructures.Dictionary<string, string> dictionary = new DataStructures.Dictio
 
 #region HashTesting
 
-Hash.Hash32("Hello world");
-
-Hash.Hash64("Hello world");
-string x = "Hello world";
-Console.WriteLine(x.GetHashCode().ToString("x"));
+// Hash.Hash32("Hello world");
+//
+// Hash.Hash64("Hello world");
+// string x = "Hello world";
+// Console.WriteLine(x.GetHashCode().ToString("x"));
 
     
+#endregion
+
+#region HashTableTesting
+HashTable<string, string> table = new HashTable<string, string>();
+table.Print();
+table.Set("Sinar", "sinar@gmail.com");
+table.Set("Elvis", "elvis@gmail.com");
+table.Set("Tane", "tane@gmail.com");
+table.Print();
+// Console.WriteLine("[get] " + table.Get("Sinar"));
+// //Console.WriteLine("[get] " + table.Get("Tane"));
+table.Set("Gerti", "gerti@gmail.com");
+table.Set("Arist", "arist@gmail.com");
+table.Print();
+// Console.WriteLine("[get] " + table.Get("Sinar"));
 #endregion
