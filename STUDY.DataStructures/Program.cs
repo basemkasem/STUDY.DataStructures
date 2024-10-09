@@ -1,4 +1,5 @@
-﻿using DataStructures;
+﻿using System.Collections;
+using DataStructures;
 using DataStructures.DoubleLinkedList;
 
 #region EnhancedArrayTesting
@@ -232,7 +233,7 @@ using DataStructures.DoubleLinkedList;
 #endregion
 
 #region BinarySearchTreeTesting
-BinaryTree<int> tree = new BinaryTree<int>();
+// BinaryTree<int> tree = new BinaryTree<int>();
 
 // tree.BSInsert(4);
 // tree.BSInsert(6);
@@ -258,15 +259,72 @@ BinaryTree<int> tree = new BinaryTree<int>();
 // tree.Print();
 
   
-tree.BSInsert(1);
-tree.BSInsert(2);
-tree.BSInsert(3);
-tree.BSInsert(4);
-tree.BSInsert(5);
-tree.BSInsert(6);
-tree.BSInsert(7);
-tree.Print();
+// tree.BSInsert(1);
+// tree.BSInsert(2);
+// tree.BSInsert(3);
+// tree.BSInsert(4);
+// tree.BSInsert(5);
+// tree.BSInsert(6);
+// tree.BSInsert(7);
+// tree.Print();
+//
+// tree.Balance();
+// tree.Print();
+#endregion
 
-tree.Balance();
-tree.Print();
+#region HeapTesting
+Heap<int> heap = new Heap<int>();
+heap.Insert(24);
+heap.Insert(32);
+heap.Insert(16);
+heap.Insert(45);
+heap.Insert(20);
+heap.Insert(53);
+heap.Insert(14);
+heap.Insert(27);
+
+heap.Print();
+
+heap.DrawHeap();
+
+Console.WriteLine();
+Console.WriteLine(heap.Pop());
+heap.DrawHeap();
+Console.WriteLine();
+
+Console.WriteLine(heap.Pop());
+Console.WriteLine();
+heap.DrawHeap();
+Console.WriteLine();
+
+Console.WriteLine(heap.Pop());
+Console.WriteLine();
+heap.DrawHeap();
+Console.WriteLine();
+
+Console.WriteLine(heap.Pop());
+Console.WriteLine();
+heap.DrawHeap();
+Console.WriteLine();
+
+Console.WriteLine(heap.Pop());
+Console.WriteLine();
+heap.DrawHeap();
+Console.WriteLine();
+
+Console.WriteLine(heap.Pop());
+Console.WriteLine();
+heap.DrawHeap();
+Console.WriteLine();
+
+Console.WriteLine(heap.Pop());
+Console.WriteLine();
+heap.DrawHeap();
+Console.WriteLine();
+
+Console.WriteLine(heap.Pop());
+Console.WriteLine();
+heap.DrawHeap();
+Console.WriteLine();
+
 #endregion
