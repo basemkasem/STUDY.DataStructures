@@ -273,58 +273,79 @@ using DataStructures.DoubleLinkedList;
 #endregion
 
 #region HeapTesting
-Heap<int> heap = new Heap<int>();
-heap.Insert(24);
-heap.Insert(32);
-heap.Insert(16);
-heap.Insert(45);
-heap.Insert(20);
-heap.Insert(53);
-heap.Insert(14);
-heap.Insert(27);
+// Heap<int> heap = new Heap<int>();
+// heap.Insert(24);
+// heap.Insert(32);
+// heap.Insert(16);
+// heap.Insert(45);
+// heap.Insert(20);
+// heap.Insert(53);
+// heap.Insert(14);
+// heap.Insert(27);
+//
+// heap.Print();
+//
+// heap.DrawHeap();
+//
+// Console.WriteLine();
+// Console.WriteLine(heap.Pop());
+// heap.DrawHeap();
+// Console.WriteLine();
+//
+// Console.WriteLine(heap.Pop());
+// Console.WriteLine();
+// heap.DrawHeap();
+// Console.WriteLine();
+//
+// Console.WriteLine(heap.Pop());
+// Console.WriteLine();
+// heap.DrawHeap();
+// Console.WriteLine();
+//
+// Console.WriteLine(heap.Pop());
+// Console.WriteLine();
+// heap.DrawHeap();
+// Console.WriteLine();
+//
+// Console.WriteLine(heap.Pop());
+// Console.WriteLine();
+// heap.DrawHeap();
+// Console.WriteLine();
+//
+// Console.WriteLine(heap.Pop());
+// Console.WriteLine();
+// heap.DrawHeap();
+// Console.WriteLine();
+//
+// Console.WriteLine(heap.Pop());
+// Console.WriteLine();
+// heap.DrawHeap();
+// Console.WriteLine();
+//
+// Console.WriteLine(heap.Pop());
+// Console.WriteLine();
+// heap.DrawHeap();
+// Console.WriteLine();
 
-heap.Print();
+#endregion
 
-heap.DrawHeap();
+#region PriorityQueueTesting
 
-Console.WriteLine();
-Console.WriteLine(heap.Pop());
-heap.DrawHeap();
-Console.WriteLine();
+PriorityQueue<int> queue = new PriorityQueue<int>();
+queue.Enqueue(5, 24);
+queue.Enqueue(5, 32);
+queue.Enqueue(3, 16);
+queue.Enqueue(3, 45);
+queue.Enqueue(1, 20);
+queue.Enqueue(1, 53);
+queue.Enqueue(2, 14);
+queue.Enqueue(2, 27);
 
-Console.WriteLine(heap.Pop());
-Console.WriteLine();
-heap.DrawHeap();
-Console.WriteLine();
+queue.Print();
+queue.DrawHeap();
 
-Console.WriteLine(heap.Pop());
-Console.WriteLine();
-heap.DrawHeap();
-Console.WriteLine();
-
-Console.WriteLine(heap.Pop());
-Console.WriteLine();
-heap.DrawHeap();
-Console.WriteLine();
-
-Console.WriteLine(heap.Pop());
-Console.WriteLine();
-heap.DrawHeap();
-Console.WriteLine();
-
-Console.WriteLine(heap.Pop());
-Console.WriteLine();
-heap.DrawHeap();
-Console.WriteLine();
-
-Console.WriteLine(heap.Pop());
-Console.WriteLine();
-heap.DrawHeap();
-Console.WriteLine();
-
-Console.WriteLine(heap.Pop());
-Console.WriteLine();
-heap.DrawHeap();
-Console.WriteLine();
-
+while(queue.HasData()){
+    PqNode<int> result = queue.Dequeue();
+    Console.WriteLine(result.Data + "[" + result.Priority+ "]");
+}
 #endregion
