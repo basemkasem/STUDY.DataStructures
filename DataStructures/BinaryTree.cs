@@ -4,6 +4,203 @@ public class BinaryTree<TData> where TData : IComparable<TData>
 {
     private TreeNode _root;
 
+    public void Balance()
+    {
+        List<TData> nodes = new List<TData>();
+        InOrderToArray(_root, nodes);
+        _root = RecursiveBalance(0, nodes.Count -1 , nodes);
+    }
+
+    private void InOrderToArray(TreeNode node, List<TData> nodes)
+    {
+        if (node == null) return;
+        
+        InOrderToArray(node.Left, nodes);
+        nodes.Add(node.Data);
+        InOrderToArray(node.Right, nodes);
+    }
+
+    private TreeNode RecursiveBalance(int start, int end, List<TData> nodes)
+    {
+        if (start > end) return null;
+        
+        int mid = (start + end) / 2;
+        TreeNode newNode = new TreeNode(nodes[mid]);
+        newNode.Left = RecursiveBalance(start, mid - 1, nodes);
+        newNode.Right = RecursiveBalance(mid + 1, end, nodes);
+        
+        return newNode;
+    }
+
+    public void BSInsert(TData data)
+    {
+        TreeNode newNode = new TreeNode(data);
+        if (_root == null)
+        {
+            _root = newNode;
+            return;
+        }
+        TreeNode currentNode = _root;
+
+        while (currentNode != null)
+        {
+            if (currentNode.Data.CompareTo(data) > 0)
+            {
+                if (currentNode.Left == null)
+                {
+                    currentNode.Left = newNode;
+                    break;
+                }
+                else
+                {
+                    currentNode = currentNode.Left;
+                }
+            }
+            else
+            {
+                if (currentNode.Right == null)
+                {
+                    currentNode.Right = newNode;
+                    break;
+                }
+                else
+                {
+                    currentNode = currentNode.Right;
+                }
+            
+            }
+        }
+    }
+
+    public bool IsExists(TData data)
+    {
+      return BSFind(data) != null;
+    }
+
+    NodeAndParent FindNodeAndParent(TData data)
+    {
+        TreeNode currentNode = _root;
+        TreeNode parent = null;
+        NodeAndParent nodeAndParentInfo = null;
+        bool left  = false;
+        while (currentNode != null)
+        {
+            if (currentNode.Data.CompareTo(data) == 0)
+            {
+                nodeAndParentInfo = new NodeAndParent() { _node = currentNode , _parent = parent, isLeft = left };
+                break;
+            }
+            else if (currentNode.Data.CompareTo(data) > 0)
+            {
+                parent = currentNode;
+                left = true;
+                currentNode = currentNode.Left;
+            }
+            else
+            {
+                parent = currentNode;
+                left = false;
+                currentNode = currentNode.Right;
+            }
+        }
+        return nodeAndParentInfo;
+    }
+    private TreeNode BSFind(TData data)
+    {
+        TreeNode currentNode = _root;
+        while (currentNode != null)
+        {
+            if (currentNode.Data.CompareTo(data) == 0)
+            {
+                return currentNode;
+            }
+            else if (currentNode.Data.CompareTo(data) > 0)
+            {
+                currentNode = currentNode.Left;
+            }
+            else
+            {
+                currentNode = currentNode.Right;
+            }
+        }
+        return null;
+    }
+
+    public void BSDelete(TData data)
+    {
+        NodeAndParent nodeAndParentInfo = FindNodeAndParent(data);
+        if (nodeAndParentInfo == null) return;
+        if (nodeAndParentInfo._node.Left != null && nodeAndParentInfo._node.Right != null)
+        {
+            BSDeleteHasChild(nodeAndParentInfo._node);
+        }
+        else if (nodeAndParentInfo._node.Left != null ^ nodeAndParentInfo._node.Right != null)
+        {
+            BsDeleteHasOneChild(nodeAndParentInfo._node);
+        }
+        else
+        {
+            BSDeleteLeaf(nodeAndParentInfo);
+        }
+    }
+
+    private void BSDeleteLeaf(NodeAndParent nodeAndParentInfo)
+    {
+        if (nodeAndParentInfo._parent == null)
+        {
+            _root = null;
+        }
+        else 
+        {
+            if (nodeAndParentInfo.isLeft)
+            {
+                nodeAndParentInfo._parent.Left = null;
+            }
+            else
+            {
+                nodeAndParentInfo._parent.Right = null; 
+            }
+        }
+
+    }
+    private void BSDeleteHasChild(TreeNode nodeToDelete)
+    {
+        TreeNode currentNode = nodeToDelete.Right;
+        TreeNode parentNode = null;
+        while (currentNode.Left != null)
+        {
+            parentNode = currentNode;
+            currentNode = currentNode.Left;
+        }
+
+        if (parentNode != null)
+        {
+            parentNode.Left = currentNode.Right;
+        }
+        else
+        {
+            nodeToDelete.Right = currentNode.Right;
+        }
+        nodeToDelete.Data = currentNode.Data;
+    }
+
+    private void BsDeleteHasOneChild(TreeNode nodeToDelete)
+    {
+        TreeNode nodeToReplace = null;
+        if (nodeToDelete.Left != null)
+        {
+            nodeToReplace = nodeToDelete.Left;
+        }
+        else
+        {
+            nodeToReplace = nodeToDelete.Right;
+        }
+        
+        nodeToDelete.Data = nodeToReplace.Data;
+        nodeToDelete.Left = nodeToReplace.Left;
+        nodeToDelete.Right = nodeToReplace.Right;
+    }
+    
     public void Insert(TData data)
     {
         TreeNode newNode = new TreeNode(data);
@@ -99,6 +296,8 @@ public class BinaryTree<TData> where TData : IComparable<TData>
     
     //TODO: Find(Data) -> Apply any traversal method
     //TODO: Delete(Data) -> 
+    
+    //TODO: Douplication Handling: (1) Don't Allow. (2) Allow (Applied). (3) Add counter. 
     
     #region PrintMethods
 
@@ -224,5 +423,12 @@ public class BinaryTree<TData> where TData : IComparable<TData>
         {
             Data = data;
         }
+    }
+
+    class NodeAndParent
+    {
+        internal TreeNode _node;
+        internal TreeNode _parent;
+        internal bool isLeft;
     }
 }

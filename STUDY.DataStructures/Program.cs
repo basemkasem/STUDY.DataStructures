@@ -208,25 +208,65 @@ using DataStructures.DoubleLinkedList;
 #endregion
 
 #region BinaryTreeTesting
-BinaryTree<char> tree = new BinaryTree<char>();
-tree.Insert('A');
-tree.Insert('B');
-tree.Insert('C');
-tree.Insert('D');
-tree.Insert('E');
-tree.Insert('F');
-tree.Insert('G');
-tree.Insert('H');
-tree.Insert('I');
+// BinaryTree<char> tree = new BinaryTree<char>();
+// tree.Insert('A');
+// tree.Insert('B');
+// tree.Insert('C');
+// tree.Insert('D');
+// tree.Insert('E');
+// tree.Insert('F');
+// tree.Insert('G');
+// tree.Insert('H');
+// tree.Insert('I');
+// tree.Print();
+// Console.WriteLine();
+//
+// Console.WriteLine($"Height = {tree.Height()}");
+// Console.WriteLine();
+//
+// tree.PreOrderTraversal();
+//
+// tree.InOrderTraversal();
+//
+// tree.PostOrderTraversal();
+#endregion
+
+#region BinarySearchTreeTesting
+BinaryTree<int> tree = new BinaryTree<int>();
+
+// tree.BSInsert(4);
+// tree.BSInsert(6);
+// tree.BSInsert(7);
+// tree.BSInsert(5);
+// tree.BSInsert(2);
+// tree.BSInsert(1);
+// tree.BSInsert(3);
+// tree.Print();
+//
+// tree.BSDelete(4);
+// tree.Print();
+// tree.BSDelete(6);
+// tree.Print();
+// tree.BSDelete(3);
+// tree.BSDelete(5);
+// tree.Print();
+// tree.BSDelete(7);
+// tree.Print();
+// tree.BSDelete(2);
+// tree.Print();
+// tree.BSDelete(1);
+// tree.Print();
+
+  
+tree.BSInsert(1);
+tree.BSInsert(2);
+tree.BSInsert(3);
+tree.BSInsert(4);
+tree.BSInsert(5);
+tree.BSInsert(6);
+tree.BSInsert(7);
 tree.Print();
-Console.WriteLine();
 
-Console.WriteLine($"Height = {tree.Height()}");
-Console.WriteLine();
-
-tree.PreOrderTraversal();
-
-tree.InOrderTraversal();
-
-tree.PostOrderTraversal();
+tree.Balance();
+tree.Print();
 #endregion
